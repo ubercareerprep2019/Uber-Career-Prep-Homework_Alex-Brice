@@ -2,10 +2,10 @@ public class Queue{
     
     //instance variable
     
-    MyStack queue; 
+    MyStack<Integer> queue; 
     
     public Queue(){
-        queue = new MyStack(); 
+        queue = new MyStack<> (); 
     }
     
     public void enqueue(Integer elt){
@@ -15,7 +15,7 @@ public class Queue{
     public Integer dequeue(){
         //create a temporary MyStack
         
-        MyStack tmp = new MyStack ();
+        MyStack<Integer> tmp = new MyStack<> ();
         Integer deq; 
         
         while(!queue.isEmpty()){
