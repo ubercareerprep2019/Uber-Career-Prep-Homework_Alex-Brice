@@ -1,82 +1,132 @@
-import java.util.Stack; 
+ 
 
-public class MyStack{
+public class MyStack<Integer> {
+    
+        
+        //instance variable
+        
+        private Node<Integer> head; 
+    
+        private static class Node<Integer> {
+        
+            /**Each node has a Integer element and 
+             * another "next" node
+             * and a min int element that records the min value
+             * of all the nodes beneath the node
+             **/
+            Integer element; 
+            Node<Integer> next; 
+            Integer min; 
+        
+            //constructor
+        
+            Node(Integer elt, Node<Integer> nxt){
+                element = elt; 
+                nxt = next; 
+               
+                min = null; 
+            }
+        }
+    
+        public MyStack(){
             
-            private Stack<Integer> the_stack; //instance variable
-            private Stack<Integer> min_stack; 
+            //initialized with a null "head" node
+            head = null;  
+        }
+    
+        public Integer push(Integer t){
             
-            public MyStack(){
-                //constructor
-                the_stack = new Stack<Integer>();  
-                min_stack = new Stack<Integer>(); 
+            Integer pushed_elt; 
+            Node<Integer> node = new Node<> (t, null); 
+            
+            if(head == null){
+                //empty stack
+                head = node; 
+                node.element = t;
+                node.min = t; //first node in the stack.
+                node.next = null; 
+                
+                pushed_elt = head.element; 
+                
+                
+                return pushed_elt; 
             }
             
-            public Integer push(Integer t){
-                
-                Integer elt_push = the_stack.push(t); 
-                push_min(elt_push); 
-                
-                return elt_push; 
+            //we always add at the front
+            
+            Node <Integer> tmp = head; 
+            
+            head = node; 
+            node.element = t;
+            node.next = tmp;
+            node.min = tmp.min; 
+          
+          /** if(t < node.min){
+               //new min found
+               node.min = t; 
+           }**/
+            
+            pushed_elt = head.element; 
+            
+            return pushed_elt; 
+        }
+            
+            
+    
+        public Integer pop(){
+            //we always pop from the front
+            
+            if(!isEmpty()){
+                Integer popped_elt = head.element; 
+               
+                head = head.next; 
+            
+                return popped_elt;
             }
             
-            public void push_min(Integer elt){
-                
-                //this function ensures that min_stack contains ordered elements of the_stack
-                //use temporary stack
-                
-                if(min_stack.empty()){
-                    min_stack.push(elt); 
-                }
-                else{
-                    Stack<Integer> tmp = new Stack<>();
-                    while((!min_stack.empty()) && min_stack.peek() < elt){
-                        Integer t = min_stack.pop(); 
-                        tmp.push(t); 
-                    }
-                    
-                    min_stack.push(elt);
-                    
-                    while(!tmp.empty()){
-                        Integer s = tmp.pop(); 
-                        min_stack.push(s); 
-                    }
-                }
+            
+            return null; 
+             
+        }
+    
+    
+        /**I wrote the min() routine after writing the whole class in generics.
+         * I initially thought "Integer" meant "java.lang.Integer"
+         * Will Keep working on this
+         * I was running out of time for the deadline
+         * Therefore, this won't be tested in the test cases
+         **/
+    
+        /**
+        public T min(){
+            if(head == null){ //empty
+                return null; 
             }
             
-            public Integer pop(){
-                
-                Integer num = the_stack.pop(); 
-                update_min(num); 
-                return num; 
-            }
+            return head.min; 
+        } **/
             
-            public void update_min(Integer elt){
-                
-                //min_stack must contain at least one element
-                
-                Stack<Integer> tmp = new Stack<> (); 
-                while ((!min_stack.empty()) && elt != min_stack.peek()){
-                    Integer r = min_stack.pop(); 
-                    tmp.push(r); 
-                }
-                
-                min_stack.pop(); 
-                
-                while(!tmp.empty()){
-                    Integer p = tmp.pop(); 
-                    min_stack.push(p); 
-                }
-            }
             
             public Integer top(){
-                return the_stack.peek(); 
+                return head.element; 
             }
             
             public boolean isEmpty(){
-                return the_stack.empty()? true : false; 
+            return head == null ? true : false;  
+                
+            }
+    
+            public int size(){
+                Node<Integer> tmp = head; 
+                int count = 0; 
+                
+                while(tmp != null){
+                    tmp = tmp.next; 
+                    count++; 
+                }
+                
+                return count; 
             }
             
-            public Integer min(){
-                return min_stack.peek(); 
-            }
+           
         }
