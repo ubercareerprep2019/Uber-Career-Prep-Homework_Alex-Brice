@@ -18,14 +18,13 @@ public class Part2{
 
 			for(int j = 0; j < s2.length(); j++){
 				if(m == s2.charAt(j)){
-					isPerm = true; 
-					count++; 
+					isPerm = true;  
 				}
 			}
-		}
-
-		if(count != s1.length()){
-			isPerm = false; 
+            
+            if(isPerm == false){ //if it is still false after the loop, no permutation was found.
+                break; 
+            }
 		}
 
 		return isPerm; 
@@ -66,7 +65,8 @@ public class Part2{
 	}
     
     public static void print_2D_array(int[][] array){
-        //we know each row has 2 columbs
+        //useful during testing
+        //we know each row has 2 columns
         
         int row = 0; 
         
@@ -88,11 +88,11 @@ public class Part2{
 		String str_2 = "elloh"; 
 
         
-        /**assert isStringPermutation(str_1, str_2) : "This should return true"; 
+        assert isStringPermutation(str_1, str_2) : "This should return true"; 
         
         assert (!isStringPermutation(str_1, "horimbere")) : "This should be false"; 
         
-        assert isStringPermutation("JUliette", "UlietteJ") :"This should be true"; **/
+        assert isStringPermutation("JUliette", "UlietteJ") :"This should be true"; 
 
 
 		//testing 2nd function
