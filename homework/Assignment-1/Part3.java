@@ -5,7 +5,7 @@ public class Part3{
     
     public static void main(String[] args){
         
-        MyStack example = new MyStack(); 
+        MyStack<Integer> example = new MyStack<> (); 
         
         example.push(1); 
         example.push(2); 
@@ -15,7 +15,9 @@ public class Part3{
         
         assert (example.top() == 5); 
         
-        example.pop(); 
+        example.pop();
+        
+        assert (example.top() == 4); 
         example.pop(); 
         
         assert (example.top() == 3); 
@@ -31,7 +33,7 @@ public class Part3{
             example.push(i--); 
         }
         
-        assert (example.min() == 1); 
+       //assert (example.min() == 1); 
         
         Queue q = new Queue(); 
         
