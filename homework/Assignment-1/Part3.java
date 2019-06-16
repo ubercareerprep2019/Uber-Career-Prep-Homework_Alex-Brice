@@ -1,11 +1,11 @@
-import java.util.Stack; 
+
 
 
 public class Part3{
     
     public static void main(String[] args){
         
-        MyStack<Integer> example = new MyStack<> (); 
+        MyStack example = new MyStack (); 
         
         example.push(1); 
         example.push(2); 
@@ -33,7 +33,7 @@ public class Part3{
             example.push(i--); 
         }
         
-       //assert (example.min() == 1); 
+       assert (example.min() == 1); 
         
         Queue q = new Queue(); 
         
