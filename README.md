@@ -10,7 +10,9 @@ I have tried my best solving all problems. Some important points:
 that an earlier implementation included generics (instead of integer), 
 and this caused some confusion when implementing min(). 
 Therefore, the min() routine is written but not tested. Ultimately, due to time constraints,
-I decided to keep generics. I will keep working on it. 
+I decided to keep generics. I will keep working on it.
+
+EDIT: I worked on it later. Now the min() routine is functional. 
 
 2. Needless to say, Part5 was very challenging. I did my best. There are still some 
 areas that I still need to improve on. 
