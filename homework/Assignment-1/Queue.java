@@ -2,31 +2,31 @@ public class Queue{
     
     //instance variable
     
-    MyStack<Integer> queue; 
+    MyStack queue; 
     
     public Queue(){
-        queue = new MyStack<> (); 
+        queue = new MyStack (); 
     }
     
-    public void enqueue(Integer elt){
+    public void enqueue(int elt){
         queue.push(elt); 
     }
     
-    public Integer dequeue(){
+    public int dequeue(){
         //create a temporary MyStack
         
-        MyStack<Integer> tmp = new MyStack<> ();
-        Integer deq; 
+        MyStack tmp = new MyStack ();
+        int deq; 
         
         while(!queue.isEmpty()){
-            Integer r = queue.pop(); 
+            int r = queue.pop(); 
             tmp.push(r); 
         }
         
         deq = tmp.pop(); //dequeue-ing the bottom element, which was the "first"
         
         while (!tmp.isEmpty()){
-            Integer s = tmp.pop(); 
+            int s = tmp.pop(); 
             queue.push(s); 
         }
         
