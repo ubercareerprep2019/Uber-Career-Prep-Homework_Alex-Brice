@@ -1,30 +1,30 @@
  
 
-public class MyStack<Integer> {
+public class MyStack {
     
         
         //instance variable
         
-        private Node<Integer> head; 
+        private Node head; 
     
-        private static class Node<Integer> {
+        private static class Node {
         
             /**Each node has a Integer element and 
              * another "next" node
              * and a min int element that records the min value
              * of all the nodes beneath the node
              **/
-            Integer element; 
-            Node<Integer> next; 
-            Integer min; 
+            int element; 
+            Node next; 
+            int min; 
         
             //constructor
         
-            Node(Integer elt, Node<Integer> nxt){
+            Node(int elt, Node nxt){
                 element = elt; 
                 nxt = next; 
                
-                min = null; 
+                min = Integer.MAX_VALUE; 
             }
         }
     
@@ -34,10 +34,10 @@ public class MyStack<Integer> {
             head = null;  
         }
     
-        public Integer push(Integer t){
+        public int push(int t){
             
-            Integer pushed_elt; 
-            Node<Integer> node = new Node<> (t, null); 
+            int pushed_elt; 
+            Node node = new Node (t, null); 
             
             if(head == null){
                 //empty stack
@@ -54,17 +54,17 @@ public class MyStack<Integer> {
             
             //we always add at the front
             
-            Node <Integer> tmp = head; 
+            Node tmp = head; 
             
             head = node; 
             node.element = t;
             node.next = tmp;
             node.min = tmp.min; 
           
-          /** if(t < node.min){
+          if(t < node.min){
                //new min found
                node.min = t; 
-           }**/
+           }
             
             pushed_elt = head.element; 
             
@@ -73,11 +73,11 @@ public class MyStack<Integer> {
             
             
     
-        public Integer pop(){
+        public int pop(){
             //we always pop from the front
             
             if(!isEmpty()){
-                Integer popped_elt = head.element; 
+                int popped_elt = head.element; 
                
                 head = head.next; 
             
@@ -85,48 +85,42 @@ public class MyStack<Integer> {
             }
             
             
-            return null; 
+            return 0; 
              
         }
     
     
-        /**I wrote the min() routine after writing the whole class in generics.
-         * I initially thought "Integer" meant "java.lang.Integer"
-         * Will Keep working on this
-         * I was running out of time for the deadline
-         * Therefore, this won't be tested in the test cases
-         **/
-    
-        /**
-        public T min(){
+        //min() routine
+        //returns min or 0 if stack empty
+        
+        public int min(){
             if(head == null){ //empty
-                return null; 
+                return 0; 
             }
             
             return head.min; 
-        } **/
+        }
+        
+        
+        //returns top of the stack
             
+         public int top(){
+              return head.element; 
+         }
             
-            public Integer top(){
-                return head.element; 
-            }
-            
-            public boolean isEmpty(){
-            return head == null ? true : false;  
-                
-            }
+         public boolean isEmpty(){
+              return head == null ? true : false;     
+         }
     
-            public int size(){
-                Node<Integer> tmp = head; 
-                int count = 0; 
+         public int size(){
+              Node tmp = head; 
+              int count = 0; 
                 
-                while(tmp != null){
-                    tmp = tmp.next; 
-                    count++; 
-                }
+              while(tmp != null){
+                  tmp = tmp.next; 
+                  count++; 
+              }
                 
-                return count; 
-            }
-            
-           
+              return count; 
+          }   
         }
